@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' file: data: https:; font-src 'self' data:">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MD 閱讀器</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app" id="app">
+ <aside id="side">
+  <div class="brand">MD 閱讀器<small>預設唯讀・解鎖後才能編輯</small></div>
+  <div class="pick">
+   <button id="pickFiles" title="Ctrl+O">選擇檔案</button>
+   <button id="pickDir" title="Ctrl+Shift+O">匯入資料夾</button>
+  </div>
+  <input class="search" id="search" type="search" placeholder="搜尋檔名…（Ctrl+P）" aria-label="搜尋檔名">
+  <nav class="tree" id="tree"></nav>
+  <div class="count" id="count"></div>
+ </aside>
+ <main id="main">
+  <div class="bar">
+   <button class="btn menu" id="menuBtn" aria-label="開啟檔案選單">☰</button>
+   <div class="crumb" id="crumb"></div>
+   <span class="saved" id="saved"></span>
+   <button class="btn lock" id="lockBtn" title="Ctrl+E"></button>
+   <button class="btn" id="revertBtn" hidden><span class="t">還原</span>↺</button>
+   <button class="btn" id="saveBtn" hidden title="Ctrl+S">儲存</button>
+  </div>
+  <div class="body" id="body">
+   <div class="editor"><textarea id="ta" spellcheck="false" aria-label="Markdown 原文"></textarea></div>
+   <div class="scroller" id="scroller"><article class="doc" id="doc"></article></div>
+   <nav class="toc" id="toc"></nav>
+  </div>
+  <div class="banner" id="banner">✎ 編輯模式：Ctrl+S 直接儲存回原檔，Ctrl+E 重新鎖定。</div>
+  <div class="drop" id="drop">放開以開啟檔案或資料夾</div>
+ </main>
+</div>
+<div class="modal" id="modal"><div><p id="modalText"></p><div class="row"><button class="btn" id="mNo">取消</button><button class="btn lock open" id="mYes">確定</button></div></div></div>
+<div class="toast" id="toast"></div>
+<script src="../node_modules/marked/marked.min.js"></script>
+<script src="../node_modules/dompurify/dist/purify.min.js"></script>
+<script src="renderer.js"></script>
+</body>
+</html>
